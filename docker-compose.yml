@@ -1,0 +1,14 @@
+version: '2'
+services:
+  data:
+    build: ./docker-data/
+    volumes:
+      - /usr/share/elasticsearch/data
+
+  search:
+    build: ./docker-elasticsearch/
+    volumes_from:
+      - data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
