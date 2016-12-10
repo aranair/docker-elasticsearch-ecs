@@ -10,9 +10,20 @@ docker-compose up
 
 Yup that's it.
 
-### To run it on ECS
+### To push the docker images to a repository
 
-Please refer to this blog post that I put up for a step-by-step walkthrough.
+Update `push-tag.sample` in the bin folder with your own docker registry repository.
+
+Then `bin/push-tag`
+
+### Run it on ECS
+
+Most of the legwork has already been done in the configurations so it should be fairly easy.
+
+This [blog post][blog post] that I wrote runs through some of the details inside the files and
+configurations that you should have in the ECS and task definitions.
+
+Also feel free to refer to the `ecs-task-definition.sample` as a start to guide you.
 
 ### Notable configurations
 
@@ -36,3 +47,9 @@ discovery.zen.ping.multicast.enabled: false
 es.logger.level: DEBUG
 ```
 
+[blog post]: http://aranair.github.io/posts/2016/12/05/aws-ecs-elasticsearch-cluster/
+
+
+### LICENSE
+
+MIT
