@@ -1,0 +1,13 @@
+set -e
+command -v jq >/dev/null 2>&1 || { echo >&2 "I require jq but it's not installed. Please run 'brew install jq'."; exit 1; }
+: "${AWS_ACCESS_KEY_ID?Please set your AWS_ACCESS_KEY_ID environment variable}"
+: "${AWS_SECRET_ACCESS_KEY?Please set your AWS_SECRET_ACCESS_KEY environment variable}"
+: "${AWS_DEFAULT_REGION?Please set your AWS_DEFAULT_REGION environment variable}"
+
+$(aws ecr get-login --region us-east-1)
+
+docker build -t elasticsearch docker-elasticsearch/
+
+docker tag elasticsearch:latest YOUR_DOCKER_REGISTRY_URL/elasticsearch:latest
+
+docker push YOUR_DOCKER_REGISTRY_URL/elasticsearch:latest
