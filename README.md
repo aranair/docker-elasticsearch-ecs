@@ -1,8 +1,8 @@
-## Docker Elasticsearch in ECS
+# Docker Elasticsearch in ECS
 
 An elasticsearch docker-compose containers setup that is meant to be hosted on ECS.
 
-### Run it locally
+## Run it locally
 
 ```
 docker-compose up
@@ -10,22 +10,22 @@ docker-compose up
 
 Yup that's it.
 
-### To push the docker images to a repository
+## To push the docker images to a repository
 
 Update `push-tag.sample` in the bin folder with your own docker registry repository.
 
 Then `bin/push-tag`
 
-### Run it on ECS
+## Run it on ECS
 
 Most of the legwork has already been done in the configurations so it should be fairly easy.
 
 This [blog post][blog post] that I wrote runs through some of the details inside the files and
 configurations that you should have in the ECS and task definitions.
 
-Also feel free to refer to the `ecs-task-definition.sample` as a start to guide you.
+Also feel free to refer to [ecs-task-definition.sample][task definition sample] as a start to guide you.
 
-### Notable configurations
+## Notable configurations
 
 **elasticsearch.yml**: `discovery.ec2.groups` should be set to the security group that was assigned when you created the ECS cluster. Do not remove `network.host` or `network.publish_host`
 
@@ -47,9 +47,9 @@ discovery.zen.ping.multicast.enabled: false
 es.logger.level: DEBUG
 ```
 
-[blog post]: http://aranair.github.io/posts/2016/12/05/aws-ecs-elasticsearch-cluster/
-
-
-### LICENSE
+## LICENSE
 
 MIT
+
+[blog post]: http://aranair.github.io/posts/2016/12/05/aws-ecs-elasticsearch-cluster/
+[task definition sample]: https://github.com/aranair/docker-elasticsearch-ecs/blob/master/ecs-task-definition.sample
