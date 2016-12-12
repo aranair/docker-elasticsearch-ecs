@@ -25,6 +25,74 @@ configurations that you should have in the ECS and task definitions.
 
 Also feel free to refer to [ecs-task-definition.sample][task definition sample] as a start to guide you.
 
+```
+{
+    "networkMode": "bridge",
+    "taskRoleArn": null,
+    "containerDefinitions": [
+        {
+            "volumesFrom": [],
+            "memory": 512,
+            "extraHosts": null,
+            "dnsServers": null,
+            "disableNetworking": null,
+            "dnsSearchDomains": null,
+            "portMappings": [
+                {
+                    "hostPort": 9200,
+                    "containerPort": 9200,
+                    "protocol": "tcp"
+                },
+                {
+                    "hostPort": 9300,
+                    "containerPort": 9300,
+                    "protocol": "tcp"
+                }
+            ],
+            "hostname": null,
+            "essential": true,
+            "entryPoint": null,
+            "mountPoints": [
+                {
+                    "containerPath": "/usr/share/elasticsearch/data",
+                    "sourceVolume": "elasticsearchdata",
+                    "readOnly": null
+                }
+            ],
+            "name": "elasticsearch",
+            "ulimits": null,
+            "dockerSecurityOptions": null,
+            "environment": [
+                {
+                    "name": "ES_HEAP_SIZE",
+                    "value": "256m"
+                }
+            ],
+            "links": null,
+            "workingDirectory": null,
+            "readonlyRootFilesystem": null,
+            "image": "YOUR_DOCKER_REGISTRY_URL:latest",
+            "command": null,
+            "user": null,
+            "dockerLabels": null,
+            "logConfiguration": null,
+            "cpu": 0,
+            "privileged": null,
+            "memoryReservation": null
+        }
+    ],
+    "volumes": [
+        {
+            "host": {
+                "sourcePath": "/usr/share/elasticsearch/data"
+            },
+            "name": "elasticsearchdata"
+        }
+    ],
+    "family": "elasticsearch"
+}
+```
+
 ## Notable configurations
 
 **elasticsearch.yml**: `discovery.ec2.groups` should be set to the security group that was assigned when you created the ECS cluster. Do not remove `network.host` or `network.publish_host`
