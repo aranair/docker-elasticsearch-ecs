@@ -1,8 +1,7 @@
 script.inline: true
-bootstrap.mlockall: true
+bootstrap.memory_lock: true
 network.host: 0.0.0.0
-plugin.mandatory: cloud-aws
 network.publish_host: _ec2:privateIp_
-discovery.type: ec2
+discovery.zen.hosts_provider: ec2
 discovery.ec2.groups: sg-docker-es-1
 discovery.zen.ping.multicast.enabled: false

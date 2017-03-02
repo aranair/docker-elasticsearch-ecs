@@ -1,11 +1,14 @@
-FROM elasticsearch:2.3
+FROM elasticsearch:5.2.2
 
 WORKDIR /usr/share/elasticsearch
 
-RUN bin/plugin install cloud-aws
-RUN bin/plugin install mobz/elasticsearch-head
-RUN bin/plugin install analysis-phonetic
+ADD elasticsearch.yml config/elasticsearch.yml
+ADD logging.yml config/logging.yml
+ADD elasticsearch-entrypoint.sh /docker-entrypoint.sh
 
-COPY elasticsearch.yml config/elasticsearch.yml
-COPY logging.yml config/logging.yml
-COPY elasticsearch-entrypoint.sh /docker-entrypoint.sh
+RUN bin/elasticsearch-plugin install discovery-ec2
+
+USER root
+RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
+RUN chown elasticsearch:elasticsearch config/logging.yml
+USER elasticsearch
