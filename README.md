@@ -2,9 +2,15 @@
 
 An elasticsearch docker-compose containers setup that is meant to be hosted on ECS.
 
-## Notes
+## 2.3.X
+
+- Master branch
+- http://aranair.github.io/posts/2016/12/05/aws-ecs-elasticsearch-cluster/
+
+## 5.2.2
 
 - Use 5.2.2 branch for ElasticSearch 5.2.2
+- https://aranair.github.io/posts/2017/04/03/getting-elasticsearch-5.2.2-to-work-on-amazon-ecs/
 
 ## Run it locally
 
