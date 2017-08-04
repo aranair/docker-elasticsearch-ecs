@@ -2,6 +2,10 @@
 
 An elasticsearch docker-compose containers setup that is meant to be hosted on ECS.
 
+## Notes
+
+- Use 5.2.2 branch for ElasticSearch 5.2.2
+
 ## Run it locally
 
 ```
